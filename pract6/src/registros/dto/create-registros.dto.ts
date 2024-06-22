@@ -1,25 +1,26 @@
-import { IsInt, IsString, IsNotEmpty, IsOptional } from 'class-validator';
+// src/registro/dto/create-registro.dto.ts
+
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateRegistroDto {
-  @IsInt()
-  ID_idioma: number;
+  @IsNotEmpty()
+  idiomaId: number;
 
-  @IsInt()
-  ID_palabra: number;
+  @IsNotEmpty()
+  palabraId: number;
 
-  @IsString()
   @IsNotEmpty()
   deletreo: string;
 
-  @IsOptional()
-  @IsInt()
-  silabas?: number;
-
-  @IsOptional()
-  @IsString()
-  fonetica?: string;
-
-  @IsString()
   @IsNotEmpty()
+  @IsNumber()
+  silabas: number;
+
+  @IsNotEmpty()
+  @IsString()
+  fonetica: string;
+
+  @IsNotEmpty()
+  @IsString()
   estado: string;
 }

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IdiomaModule } from './idiomas/idiomas.module';
-import { PalabraModule } from './palabras/palabras.module';
+import {  IdiomaModule } from './idiomas/idiomas.module';
+import { PalabrasModule } from './palabras/palabras.module';
 import { RegistrosModule } from './registros/registros.module';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
@@ -15,12 +15,12 @@ import { AppController } from './app.controller';
       port: 5432,
       username: 'postgres',
       password: '123456',
-      database: 'DESVELO4AM',
+      database: 'PRACTI6_2',
       autoLoadEntities: true,
       synchronize: true,
     }),
     IdiomaModule,
-    PalabraModule,
+    PalabrasModule,
     RegistrosModule,
   ],
   controllers: [AppController],

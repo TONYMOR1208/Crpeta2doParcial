@@ -1,8 +1,9 @@
+
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Palabra } from './entities/palabras.entity';
-import { CreatePalabraDto } from './dto/create-palabras.dto';
+import { CreatePalabraDto } from 'src/palabras/dto/create-palabras.dto';
 import { UpdatePalabraDto } from './dto/update-palabras.dto';
 
 @Injectable()
@@ -22,28 +23,16 @@ export class PalabraService {
   }
 
   async findOne(id: number): Promise<Palabra> {
-    const palabra = await this.palabraRepository.findOne({ where: { id } });
-    if (!palabra) {
-      throw new NotFoundException(`Palabra with ID ${id} not found`);
-    }
-    return palabra;
+    return this.palabraRepository.findOne({ where: { id } });
   }
 
   async update(id: number, updatePalabraDto: UpdatePalabraDto): Promise<Palabra> {
     await this.palabraRepository.update(id, updatePalabraDto);
-    const updatedPalabra = await this.palabraRepository.findOne({ where: { id } });
-    if (!updatedPalabra) {
-      throw new NotFoundException(`Palabra with ID ${id} not found`);
-    }
-    return updatedPalabra;
+    return this.palabraRepository.findOne({ where: { id } });
   }
 
   async remove(id: number): Promise<Palabra> {
-    await this.palabraRepository.delete(id);
-    const deletedPalabra = await this.palabraRepository.findOne({ where: { id } });
-    if (!deletedPalabra) {
-      throw new NotFoundException(`Palabra with ID ${id} not found`);
-    }
-    return deletedPalabra;
-  }
+    await this.palabraRepository.update(id, { estado: 'eliminado' });
+    return this.palabraRepository.findOne({ where: { id } });
+  } 
 }

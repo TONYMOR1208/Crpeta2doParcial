@@ -1,34 +1,34 @@
-// src/registros/registros.controller.ts
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
-import { RegistrosService } from './registros.service';
-import { Registro } from './entities/registros.entity';
+import { Controller, Post, Get, Patch, Delete, Body, Param, NotFoundException } from '@nestjs/common';
+import { RegistroService } from './registros.service';
+import { CreateRegistroDto } from './dto/create-registros.dto';
 
-@Controller('registros')
-export class RegistrosController {
-  constructor(private readonly registrosService: RegistrosService) {}
+@Controller('registro')
+export class RegistroController {
+  constructor(private readonly registroService: RegistroService) {}
+
+  @Post()
+  async create(@Body() createRegistroDto: CreateRegistroDto) {
+    return await this.registroService.create(createRegistroDto);
+  }
 
   @Get()
-  async findAll(): Promise<Registro[]> {
-    return this.registrosService.findAll();
+  async findAll() {
+    return await this.registroService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Registro> {
-    return this.registrosService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.registroService.findOne(+id);
   }
 
-  @Post()
-  async create(@Body() registroData: Partial<Registro>): Promise<Registro> {
-    return this.registrosService.create(registroData);
-  }
-
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() registroData: Partial<Registro>): Promise<Registro> {
-    return this.registrosService.update(+id, registroData);
+  @Patch(':id')
+  async update(@Param('id') id: string, @Body() updateRegistroDto: CreateRegistroDto) {
+    return await this.registroService.update(+id, updateRegistroDto);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string): Promise<void> {
-    return this.registrosService.delete(+id);
+  async remove(@Param('id') id: string) {
+    const removedRegistro = await this.registroService.remove(+id);
+    return removedRegistro; 
   }
 }
