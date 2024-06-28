@@ -1,0 +1,116 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Registro {
+  id: Int!
+  fecha: DateTime!
+  hora: DateTime!
+  ubicacion: String!
+  idIdioma: Int!
+  idPalabra: Int!
+  deletreo: String
+  silabas: String
+  fonetica: String
+  estado: Estado!
+  idioma: Idioma!
+  palabra: Palabra!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Estado de la entidad"""
+enum Estado {
+  ACTIVO
+  PENDIENTE
+  ELIMINADO
+}
+
+type Palabra {
+  id: Int!
+  palabra: String!
+  deletreo: String!
+  registros: [Registro!]
+  estado: Estado!
+  idioma: Idioma!
+}
+
+type Idioma {
+  id: Int!
+  descripcion: String!
+  estado: Estado!
+  palabras: [Palabra!]
+}
+
+type Query {
+  idiomas(estado: String): [Idioma!]!
+  idioma(id: Int!): Idioma!
+  palabras(estado: String): [Palabra!]!
+  palabra(id: Int!): Palabra!
+  registros(estado: String): [Registro!]!
+  registro(id: Int!): Registro!
+}
+
+type Mutation {
+  createIdioma(createIdiomaInput: CreateIdiomaInput!): Idioma!
+  updateIdioma(id: Int!, updateIdiomaInput: UpdateIdiomaInput!): Idioma!
+  removeIdioma(id: Int!): Idioma!
+  createPalabra(createPalabraInput: CreatePalabraInput!): Palabra!
+  updatePalabra(updatePalabraInput: UpdatePalabraInput!): Palabra!
+  removePalabra(id: Int!): Palabra!
+  createRegistro(createRegistroInput: CreateRegistroInput!): Registro!
+  updateRegistro(updateRegistroInput: UpdateRegistroInput!): Registro!
+  removeRegistro(id: Int!): Registro!
+}
+
+input CreateIdiomaInput {
+  descripcion: String!
+  estado: Estado! = ACTIVO
+}
+
+input UpdateIdiomaInput {
+  descripcion: String
+  estado: Estado = ACTIVO
+  id: ID!
+}
+
+input CreatePalabraInput {
+  palabra: String!
+  deletreo: String!
+  estado: Estado! = ACTIVO
+}
+
+input UpdatePalabraInput {
+  palabra: String
+  deletreo: String
+  estado: Estado = ACTIVO
+  id: ID!
+}
+
+input CreateRegistroInput {
+  fecha: DateTime!
+  hora: DateTime!
+  ubicacion: String!
+  idIdioma: Float!
+  idPalabra: Float!
+  deletreo: String
+  silabas: String
+  fonetica: String
+  estado: Estado! = ACTIVO
+}
+
+input UpdateRegistroInput {
+  fecha: DateTime
+  hora: DateTime
+  ubicacion: String
+  idIdioma: Float
+  idPalabra: Float
+  deletreo: String
+  silabas: String
+  fonetica: String
+  estado: Estado = ACTIVO
+  id: ID!
+}
