@@ -25,8 +25,9 @@ let PalabraService = class PalabraService {
         const newPalabra = this.PalabraRepository.create(createPalabraInput);
         return await this.PalabraRepository.save(newPalabra);
     }
-    async findAll() {
-        return this.PalabraRepository.find();
+    async findAll(estado) {
+        const wherecondition = estado === 'todos' ? {} : { estado };
+        return this.PalabraRepository.find({ where: wherecondition });
     }
     async findOne(id) {
         const item = await this.PalabraRepository.findOneBy({ id });

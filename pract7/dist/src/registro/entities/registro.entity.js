@@ -53,23 +53,11 @@ __decorate([
     __metadata("design:type", String)
 ], Registro.prototype, "estado", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
-    (0, typeorm_1.CreateDateColumn)(),
-    __metadata("design:type", String)
-], Registro.prototype, "createdAt", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String),
-    (0, typeorm_1.UpdateDateColumn)(),
-    __metadata("design:type", String)
-], Registro.prototype, "updatedAt", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => idioma_entity_1.Idioma, idioma => idioma.registros),
-    (0, graphql_1.Field)(() => idioma_entity_1.Idioma),
+    (0, typeorm_1.ManyToOne)(() => idioma_entity_1.Idioma, palabra => palabra.registro, { eager: true }),
     __metadata("design:type", idioma_entity_1.Idioma)
 ], Registro.prototype, "idioma", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => palabra_entity_1.Palabra, palabra => palabra.registros),
-    (0, graphql_1.Field)(() => palabra_entity_1.Palabra),
+    (0, typeorm_1.ManyToOne)(() => palabra_entity_1.Palabra, palabra => palabra.registro, { eager: true }),
     __metadata("design:type", palabra_entity_1.Palabra)
 ], Registro.prototype, "palabra", void 0);
 exports.Registro = Registro = __decorate([

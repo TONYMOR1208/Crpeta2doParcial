@@ -9,8 +9,6 @@ type Palabra {
   silabas: Int!
   fonetica: String!
   estado: String!
-  idioma: Idioma!
-  registros: [Registro!]!
 }
 
 type Registro {
@@ -21,30 +19,27 @@ type Registro {
   silabas: Int!
   fonetica: String!
   estado: String!
-  createdAt: String!
-  updatedAt: String!
-  idioma: Idioma!
-  palabra: Palabra!
 }
 
 type Idioma {
   id: Int!
   nombre: String!
   descripcion: String!
-  createdAt: String!
-  updatedAt: String!
-  registros: [Registro!]!
+  estado: String!
 }
 
 type Query {
+  idiomas(estado: String): [Idioma!]!
   idioma(id: Int!): Idioma!
+  palabras(estado: String): [Palabra!]!
   palabra(id: Int!): Palabra!
+  registros(estado: String): [Registro!]!
   registro(id: Int!): Registro!
 }
 
 type Mutation {
   createIdioma(createIdiomaInput: CreateIdiomaInput!): Idioma!
-  updateIdioma(updateIdiomaInput: UpdateIdiomaInput!): Idioma!
+  updateIdioma(id: Int!, updateIdiomaInput: UpdateIdiomaInput!): Idioma!
   removeIdioma(id: Int!): Idioma!
   createPalabra(createPalabraInput: CreatePalabraInput!): Palabra!
   updatePalabra(updatePalabraInput: UpdatePalabraInput!): Palabra!
@@ -64,7 +59,6 @@ input UpdateIdiomaInput {
   nombre: String
   descripcion: String
   estado: String
-  id: Int!
 }
 
 input CreatePalabraInput {

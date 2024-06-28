@@ -33,19 +33,13 @@ __decorate([
 ], Idioma.prototype, "descripcion", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
-    (0, typeorm_1.CreateDateColumn)(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Idioma.prototype, "createdAt", void 0);
+], Idioma.prototype, "estado", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String),
-    (0, typeorm_1.UpdateDateColumn)(),
-    __metadata("design:type", String)
-], Idioma.prototype, "updatedAt", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => registro_entity_1.Registro, registro => registro.idioma),
-    (0, graphql_1.Field)(() => [registro_entity_1.Registro]),
+    (0, typeorm_1.OneToMany)(() => registro_entity_1.Registro, registro => registro.idioma, { cascade: true }),
     __metadata("design:type", Array)
-], Idioma.prototype, "registros", void 0);
+], Idioma.prototype, "registro", void 0);
 exports.Idioma = Idioma = __decorate([
     (0, graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)({ name: 'idioma' })

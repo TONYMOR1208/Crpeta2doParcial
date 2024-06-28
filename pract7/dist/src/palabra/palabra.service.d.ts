@@ -6,7 +6,7 @@ export declare class PalabraService {
     private readonly PalabraRepository;
     constructor(PalabraRepository: Repository<Palabra>);
     create(createPalabraInput: CreatePalabraInput): Promise<Palabra>;
-    findAll(): Promise<Palabra[]>;
+    findAll(estado: string): Promise<Palabra[]>;
     findOne(id: number): Promise<Palabra>;
     update(id: number, updatePalabraInput: UpdatePalabraInput): Promise<Palabra>;
     remove(id: number): Promise<Palabra>;

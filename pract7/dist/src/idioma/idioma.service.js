@@ -18,31 +18,33 @@ const idioma_entity_1 = require("./entities/idioma.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 let IdiomaService = class IdiomaService {
-    constructor(IdiomaRepository) {
-        this.IdiomaRepository = IdiomaRepository;
+    constructor(idiomaRepository) {
+        this.idiomaRepository = idiomaRepository;
     }
     async create(createIdiomaInput) {
-        const newIdioma = this.IdiomaRepository.create(createIdiomaInput);
-        return await this.IdiomaRepository.save(newIdioma);
+        const newIdioma = this.idiomaRepository.create(createIdiomaInput);
+        return await this.idiomaRepository.save(newIdioma);
     }
-    async findAll() {
-        return this.IdiomaRepository.find();
+    async findAll(estado) {
+        const whereCondition = estado === 'todos' ? {} : { estado };
+        return this.idiomaRepository.find({ where: whereCondition });
     }
     async findOne(id) {
-        const item = await this.IdiomaRepository.findOneBy({ id });
+        const item = await this.idiomaRepository.findOneBy({ id });
         if (!item)
             throw new common_1.NotFoundException('Item not found');
         return item;
     }
     async update(id, updateIdiomaInput) {
-        const item = await this.IdiomaRepository.preload(updateIdiomaInput);
+        const item = await this.idiomaRepository.findOneBy({ id });
         if (!item)
             throw new common_1.NotFoundException(`Item with id: ${id} not found`);
-        return this.IdiomaRepository.save(item);
+        Object.assign(item, updateIdiomaInput);
+        return this.idiomaRepository.save(item);
     }
     async remove(id) {
         const idioma = await this.findOne(id);
-        await this.IdiomaRepository.remove(idioma);
+        await this.idiomaRepository.remove(idioma);
         return { ...idioma, id };
     }
 };

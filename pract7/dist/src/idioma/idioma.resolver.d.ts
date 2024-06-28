@@ -6,8 +6,8 @@ export declare class IdiomaResolver {
     private readonly idiomaService;
     constructor(idiomaService: IdiomaService);
     createIdioma(createIdiomaInput: CreateIdiomaInput): Promise<Idioma>;
-    findAll(): Promise<Idioma[]>;
+    findAll(estado: string): Promise<Idioma[]>;
     findOne(id: number): Promise<Idioma>;
-    updateIdioma(updateIdiomaInput: UpdateIdiomaInput): Promise<Idioma>;
+    updateIdioma(id: number, updateIdiomaInput: UpdateIdiomaInput): Promise<Idioma>;
     removeIdioma(id: number): Promise<Idioma>;
 }

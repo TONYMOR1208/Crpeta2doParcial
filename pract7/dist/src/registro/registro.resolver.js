@@ -25,8 +25,8 @@ let RegistroResolver = class RegistroResolver {
     createRegistro(createRegistroInput) {
         return this.registroService.create(createRegistroInput);
     }
-    findAll() {
-        return this.registroService.findAll();
+    findAll(estado) {
+        return this.registroService.findAll(estado);
     }
     findOne(id) {
         return this.registroService.findOne(id);
@@ -47,9 +47,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], RegistroResolver.prototype, "createRegistro", null);
 __decorate([
-    (0, graphql_1.Query)(() => [registro_entity_1.Registro], { name: 'registro' }),
+    (0, graphql_1.Query)(() => [registro_entity_1.Registro], { name: 'registros' }),
+    __param(0, (0, graphql_1.Args)('estado', { type: () => String, nullable: true })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], RegistroResolver.prototype, "findAll", null);
 __decorate([

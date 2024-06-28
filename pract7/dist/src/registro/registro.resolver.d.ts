@@ -6,7 +6,7 @@ export declare class RegistroResolver {
     private readonly registroService;
     constructor(registroService: RegistroService);
     createRegistro(createRegistroInput: CreateRegistroInput): Promise<Registro>;
-    findAll(): Promise<Registro[]>;
+    findAll(estado: string): Promise<Registro[]>;
     findOne(id: number): Promise<Registro>;
     updateRegistro(updateRegistroInput: UpdateRegistroInput): Promise<Registro>;
     removeRegistro(id: number): Promise<Registro>;

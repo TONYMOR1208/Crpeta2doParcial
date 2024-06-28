@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Idioma } from 'src/idioma/entities/idioma.entity';
 import { Palabra } from 'src/palabra/entities/palabra.entity';
 
@@ -34,19 +34,21 @@ export class Registro {
   @Column()
   estado: string;
 
-  @Field(() => String)
-  @CreateDateColumn()
-  createdAt: string;
+  @ManyToOne(
+    () => Idioma, 
+    palabra => palabra.registro,
+    {eager: true})
+    idioma: Idioma;
 
-  @Field(() => String)
-  @UpdateDateColumn()
-  updatedAt: string;
 
-  @ManyToOne(() => Idioma, idioma => idioma.registros)
-  @Field(() => Idioma)
-  idioma: Idioma;
 
-  @ManyToOne(() => Palabra, palabra => palabra.registros)
-  @Field(() => Palabra)
-  palabra: Palabra;
+
+  @ManyToOne(
+    () => Palabra, 
+    palabra => palabra.registro,
+    {eager: true})
+    palabra: Palabra;
+
+ 
+
 }

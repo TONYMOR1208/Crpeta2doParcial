@@ -25,8 +25,8 @@ let PalabraResolver = class PalabraResolver {
     createPalabra(createPalabraInput) {
         return this.palabraService.create(createPalabraInput);
     }
-    findAll() {
-        return this.palabraService.findAll();
+    findAll(estado) {
+        return this.palabraService.findAll(estado);
     }
     findOne(id) {
         return this.palabraService.findOne(id);
@@ -47,9 +47,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PalabraResolver.prototype, "createPalabra", null);
 __decorate([
-    (0, graphql_1.Query)(() => [palabra_entity_1.Palabra], { name: 'palabra' }),
+    (0, graphql_1.Query)(() => [palabra_entity_1.Palabra], { name: 'palabras' }),
+    __param(0, (0, graphql_1.Args)('estado', { type: () => String, nullable: true })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PalabraResolver.prototype, "findAll", null);
 __decorate([

@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Palabra = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
-const idioma_entity_1 = require("../../idioma/entities/idioma.entity");
 const registro_entity_1 = require("../../registro/entities/registro.entity");
 let Palabra = class Palabra {
 };
@@ -48,15 +47,13 @@ __decorate([
     __metadata("design:type", String)
 ], Palabra.prototype, "estado", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => idioma_entity_1.Idioma, idioma => idioma.registros),
-    (0, graphql_1.Field)(() => idioma_entity_1.Idioma),
-    __metadata("design:type", idioma_entity_1.Idioma)
-], Palabra.prototype, "idioma", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Palabra.prototype, "idiomaId", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => registro_entity_1.Registro, registro => registro.palabra),
-    (0, graphql_1.Field)(() => [registro_entity_1.Registro]),
+    (0, typeorm_1.OneToMany)(() => registro_entity_1.Registro, registro => registro.palabra, { cascade: true }),
     __metadata("design:type", Array)
-], Palabra.prototype, "registros", void 0);
+], Palabra.prototype, "registro", void 0);
 exports.Palabra = Palabra = __decorate([
     (0, graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)({ name: 'palabra' })

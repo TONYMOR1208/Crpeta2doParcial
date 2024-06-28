@@ -8,8 +8,6 @@ export declare class Registro {
     silabas: number;
     fonetica: string;
     estado: string;
-    createdAt: string;
-    updatedAt: string;
     idioma: Idioma;
     palabra: Palabra;
 }

@@ -11,7 +11,7 @@ export const AppDataSource = new DataSource({
   port: 5432,
   username: 'postgres',
   password: '123456',
-  database: 'MIGRACIONTYPEORM',
+  database: 'pruebapract7',
   entities: [Idioma, Palabra, Registro],
   migrations: [join(__dirname, 'src/migration/**/*.ts')],
   synchronize: false,

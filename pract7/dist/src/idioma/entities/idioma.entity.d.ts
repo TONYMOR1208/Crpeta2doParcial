@@ -3,7 +3,6 @@ export declare class Idioma {
     id: number;
     nombre: string;
     descripcion: string;
-    createdAt: string;
-    updatedAt: string;
-    registros: Registro[];
+    estado: string;
+    registro: Registro[];
 }

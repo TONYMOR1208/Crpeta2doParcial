@@ -23,9 +23,11 @@ async create(createRegistroInput: CreateRegistroInput): Promise<Registro> {
     return await this.findOne(id);
   }
 
-  async findAll(): Promise<Registro[]> {
-    return this.RegistroRepository.find();
+  async findAll(estado:string): Promise<Registro[]> {
+    const wherecondition = estado=== 'todos' ? {} : {estado};
+    return this.RegistroRepository.find({where: wherecondition});
   }
+
 
   async findOne(id: number) {
     return this.RegistroRepository.findOne({where:{id}});

@@ -26,7 +26,7 @@ export class CreateRegistroInput {
   fonetica: string;
 
   @Field(() => String, {nullable: true})
-  @IsOptional()  // Use IsOptional() instead of IsNotEmpty() for nullable fields
+  @IsOptional() 
   @IsString()
   estado: string;
 }

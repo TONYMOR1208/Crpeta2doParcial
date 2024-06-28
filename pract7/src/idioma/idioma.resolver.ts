@@ -13,9 +13,9 @@ export class IdiomaResolver {
     return this.idiomaService.create(createIdiomaInput);
   }
 
-  @Query(() => [Idioma], { name: 'idioma' })
-  findAll() {
-    return this.idiomaService.findAll();
+ @Query(() => [Idioma], { name: 'idiomas' })
+  findAll( @Args('estado', {type: ()=> String, nullable: true}) estado:string) {
+    return this.idiomaService.findAll( estado);
   }
 
   @Query(() => Idioma, { name: 'idioma' })

@@ -25,14 +25,14 @@ let IdiomaResolver = class IdiomaResolver {
     createIdioma(createIdiomaInput) {
         return this.idiomaService.create(createIdiomaInput);
     }
-    findAll() {
-        return this.idiomaService.findAll();
+    findAll(estado) {
+        return this.idiomaService.findAll(estado);
     }
     findOne(id) {
         return this.idiomaService.findOne(id);
     }
-    updateIdioma(updateIdiomaInput) {
-        return this.idiomaService.update(updateIdiomaInput.id, updateIdiomaInput);
+    updateIdioma(id, updateIdiomaInput) {
+        return this.idiomaService.update(id, updateIdiomaInput);
     }
     removeIdioma(id) {
         return this.idiomaService.remove(id);
@@ -47,9 +47,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], IdiomaResolver.prototype, "createIdioma", null);
 __decorate([
-    (0, graphql_1.Query)(() => [idioma_entity_1.Idioma], { name: 'idioma' }),
+    (0, graphql_1.Query)(() => [idioma_entity_1.Idioma], { name: 'idiomas' }),
+    __param(0, (0, graphql_1.Args)('estado', { type: () => String, nullable: true })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], IdiomaResolver.prototype, "findAll", null);
 __decorate([
@@ -61,9 +62,10 @@ __decorate([
 ], IdiomaResolver.prototype, "findOne", null);
 __decorate([
     (0, graphql_1.Mutation)(() => idioma_entity_1.Idioma),
-    __param(0, (0, graphql_1.Args)('updateIdiomaInput')),
+    __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
+    __param(1, (0, graphql_1.Args)('updateIdiomaInput')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [update_idioma_input_1.UpdateIdiomaInput]),
+    __metadata("design:paramtypes", [Number, update_idioma_input_1.UpdateIdiomaInput]),
     __metadata("design:returntype", void 0)
 ], IdiomaResolver.prototype, "updateIdioma", null);
 __decorate([

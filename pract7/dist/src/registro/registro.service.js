@@ -29,8 +29,9 @@ let RegistroService = class RegistroService {
         const { id } = await this.RegistroRepository.save(Registro);
         return await this.findOne(id);
     }
-    async findAll() {
-        return this.RegistroRepository.find();
+    async findAll(estado) {
+        const wherecondition = estado === 'todos' ? {} : { estado };
+        return this.RegistroRepository.find({ where: wherecondition });
     }
     async findOne(id) {
         return this.RegistroRepository.findOne({ where: { id } });

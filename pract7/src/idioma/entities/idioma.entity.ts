@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Entity, OneToMany, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Registro } from 'src/registro/entities/registro.entity';
 
 @ObjectType()
@@ -18,14 +18,12 @@ export class Idioma {
   descripcion: string;
 
   @Field(() => String)
-  @CreateDateColumn()
-  createdAt: string;
+  @Column()
+  estado: string;
 
-  @Field(() => String)
-  @UpdateDateColumn()
-  updatedAt: string;
-
-  @OneToMany(() => Registro, registro => registro.idioma)
-  @Field(() => [Registro])
-  registros: Registro[];
+  @OneToMany(
+    () => Registro, 
+    registro => registro.idioma,
+    {cascade: true})
+  registro: Registro[];
 }

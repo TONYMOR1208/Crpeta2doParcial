@@ -38,7 +38,7 @@ exports.AppModule = AppModule = __decorate([
                 port: 5432,
                 username: 'postgres',
                 password: '123456',
-                database: 'MIGRACIONTYPEORM',
+                database: 'pruebapract7',
                 autoLoadEntities: true,
                 synchronize: false,
                 migrations: [(0, path_1.join)(__dirname, 'migration/**/*.ts')],

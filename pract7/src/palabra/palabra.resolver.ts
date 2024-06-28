@@ -13,9 +13,9 @@ export class PalabraResolver {
     return this.palabraService.create(createPalabraInput);
   }
 
-  @Query(() => [Palabra], { name: 'palabra' })
-  findAll() {
-    return this.palabraService.findAll();
+  @Query(() => [Palabra], { name: 'palabras' })
+  findAll( @Args('estado', {type: ()=> String, nullable: true}) estado:string) {
+    return this.palabraService.findAll( estado);
   }
 
   @Query(() => Palabra, { name: 'palabra' })

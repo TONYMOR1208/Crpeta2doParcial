@@ -17,9 +17,11 @@ export class IdiomaService {
     return await this.IdiomaRepository.save(newIdioma);
   }
 
-  async findAll(): Promise<Idioma[]> {
-    return this.IdiomaRepository.find();
+ async findAll(estado:string): Promise<Idioma[]> {
+    const wherecondition = estado=== 'todos' ? {} : {estado};
+    return this.IdiomaRepository.find({where: wherecondition});
   }
+
 
   async findOne(id: number): Promise<Idioma> {
     const item = await this.IdiomaRepository.findOneBy({id});

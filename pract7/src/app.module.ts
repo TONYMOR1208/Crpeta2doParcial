@@ -26,7 +26,7 @@ import { join } from 'path';
       port: 5432,
       username: 'postgres',
       password: '123456',
-      database: 'MIGRACIONTYPEORM',
+      database: 'pruebapract7',
       autoLoadEntities: true,
       synchronize: false, // Desactivar synchronize para usar migraciones
       migrations: [join(__dirname, 'migration/**/*.ts')],

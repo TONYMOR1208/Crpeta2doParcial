@@ -16,8 +16,9 @@ export class PalabraService {
     return await this.PalabraRepository.save(newPalabra);
   }
 
-  async findAll(): Promise<Palabra[]> {
-    return this.PalabraRepository.find();
+  async findAll(estado:string): Promise<Palabra[]> {
+    const wherecondition = estado=== 'todos' ? {} : {estado};
+    return this.PalabraRepository.find({where: wherecondition});
   }
 
   async findOne(id: number): Promise<Palabra> {

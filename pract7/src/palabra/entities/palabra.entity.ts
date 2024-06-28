@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, Entity } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { Idioma } from 'src/idioma/entities/idioma.entity';
 import { Registro } from 'src/registro/entities/registro.entity';
 
@@ -30,11 +30,13 @@ export class Palabra {
   @Column()
   estado: string;
 
-  @ManyToOne(() => Idioma, idioma => idioma.registros)
-  @Field(() => Idioma)
-  idioma: Idioma;
+  
+  @Column()
+  idiomaId: number;
 
-  @OneToMany(() => Registro, registro => registro.palabra)
-  @Field(() => [Registro])
-  registros: Registro[];
+  @OneToMany(
+    () => Registro, 
+    registro => registro.palabra,
+    {cascade: true})
+  registro: Registro[];
 }
