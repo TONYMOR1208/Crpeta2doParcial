@@ -1,19 +1,14 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Idioma } from 'src/idioma/entities/idioma.entity';
 import { Palabra } from 'src/palabra/entities/palabra.entity';
-
 
 @ObjectType()
 @Entity({ name: 'registro' })
 export class Registro {
-
-
   @PrimaryGeneratedColumn()
   @Field(() => Int)
   id: number;
- 
-
 
   @Field(() => Int)
   @Column()
@@ -40,17 +35,18 @@ export class Registro {
   estado: string;
 
   @Field(() => String)
-  @Column()
+  @CreateDateColumn()
   createdAt: string;
 
   @Field(() => String)
-  @Column()
+  @UpdateDateColumn()
   updatedAt: string;
 
   @ManyToOne(() => Idioma, idioma => idioma.registros)
+  @Field(() => Idioma)
   idioma: Idioma;
 
   @ManyToOne(() => Palabra, palabra => palabra.registros)
+  @Field(() => Palabra)
   palabra: Palabra;
-
 }

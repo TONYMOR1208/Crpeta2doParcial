@@ -11,8 +11,6 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 
-
-
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -28,13 +26,16 @@ import { join } from 'path';
       port: 5432,
       username: 'postgres',
       password: '123456',
-      database: 'PRACTI6_2',
+      database: 'MIGRACIONTYPEORM',
       autoLoadEntities: true,
-      synchronize: false,
+      synchronize: false, // Desactivar synchronize para usar migraciones
+      migrations: [join(__dirname, 'migration/**/*.ts')],
+      entities: [join(__dirname, '**/*.entity{.ts,.js}')], // Ajustar el path para encontrar entidades
     }),
     IdiomaModule, 
     PalabraModule, 
-    RegistroModule,],
+    RegistroModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

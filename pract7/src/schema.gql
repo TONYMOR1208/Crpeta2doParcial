@@ -9,6 +9,8 @@ type Palabra {
   silabas: Int!
   fonetica: String!
   estado: String!
+  idioma: Idioma!
+  registros: [Registro!]!
 }
 
 type Registro {
@@ -21,6 +23,8 @@ type Registro {
   estado: String!
   createdAt: String!
   updatedAt: String!
+  idioma: Idioma!
+  palabra: Palabra!
 }
 
 type Idioma {
@@ -29,6 +33,7 @@ type Idioma {
   descripcion: String!
   createdAt: String!
   updatedAt: String!
+  registros: [Registro!]!
 }
 
 type Query {
