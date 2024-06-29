@@ -16,13 +16,20 @@ let CreateIdiomaInput = class CreateIdiomaInput {
 };
 exports.CreateIdiomaInput = CreateIdiomaInput;
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true }),
+    (0, graphql_1.Field)(() => String),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateIdiomaInput.prototype, "nombre", void 0);
 __decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    __metadata("design:type", Number)
+], CreateIdiomaInput.prototype, "id", void 0);
+__decorate([
     (0, graphql_1.Field)(() => String),
+    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateIdiomaInput.prototype, "descripcion", void 0);

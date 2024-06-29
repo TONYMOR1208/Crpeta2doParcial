@@ -1,6 +1,6 @@
 export declare class CreateRegistroInput {
-    idiomaId: number;
-    palabraId: number;
+    idiomaid: number;
+    palabraid: number;
     deletreo: string;
     silabas: number;
     fonetica: string;

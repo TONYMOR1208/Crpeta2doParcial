@@ -14,45 +14,96 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RegistroService = void 0;
 const common_1 = require("@nestjs/common");
+const registro_entity_1 = require("./entities/registro.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const registro_entity_1 = require("./entities/registro.entity");
+const idioma_entity_1 = require("../idioma/entities/idioma.entity");
+const palabra_entity_1 = require("../palabra/entities/palabra.entity");
 let RegistroService = class RegistroService {
-    constructor(RegistroRepository) {
-        this.RegistroRepository = RegistroRepository;
+    constructor(registroRepository, palabraRepository, idiomaRepository) {
+        this.registroRepository = registroRepository;
+        this.palabraRepository = palabraRepository;
+        this.idiomaRepository = idiomaRepository;
     }
-    async create(createRegistroInput) {
-        const Registro = await this.RegistroRepository.create({ ...createRegistroInput,
-            idioma: { id: createRegistroInput.idiomaId },
-            palabra: { id: createRegistroInput.palabraId },
+    async create(createRegistroDto) {
+        const palabra = await this.palabraRepository.findOneBy({ id: createRegistroDto.palabraid });
+        const idioma = await this.idiomaRepository.findOneBy({ id: createRegistroDto.idiomaid });
+        if (!palabra || !idioma) {
+            throw new common_1.NotFoundException('Palabra o Idioma no encontrada');
+        }
+        const registro = this.registroRepository.create({
+            ...createRegistroDto,
+            palabra: palabra,
+            idioma: idioma,
         });
-        const { id } = await this.RegistroRepository.save(Registro);
-        return await this.findOne(id);
+        const savedRegistro = await this.registroRepository.save(registro);
+        return this.toResponseDto(savedRegistro);
     }
     async findAll(estado) {
-        const wherecondition = estado === 'todos' ? {} : { estado };
-        return this.RegistroRepository.find({ where: wherecondition });
+        const whereCondition = estado === 'todos' ? {} : { estado };
+        return this.registroRepository.find({ where: whereCondition });
     }
     async findOne(id) {
-        return this.RegistroRepository.findOne({ where: { id } });
+        const registro = await this.registroRepository.findOne({
+            where: { id: id },
+            relations: ['palabra', 'idioma'],
+        });
+        if (!registro) {
+            throw new common_1.NotFoundException('Registro no encontrado');
+        }
+        return this.toResponseDto(registro);
     }
-    async update(id, updateRegistroInput) {
-        const update = await this.RegistroRepository.preload(updateRegistroInput);
-        return await this.RegistroRepository.save(update);
+    async update(id, updateRegistroDto) {
+        const registro = await this.registroRepository.findOneBy({ id: id });
+        if (!registro) {
+            throw new common_1.NotFoundException('Registro no encontrado');
+        }
+        const palabra = await this.palabraRepository.findOneBy({ id: updateRegistroDto.palabraid });
+        const idioma = await this.idiomaRepository.findOneBy({ id: updateRegistroDto.idiomaid });
+        if (!palabra || !idioma) {
+            throw new common_1.NotFoundException('Palabra o Idioma no encontrada');
+        }
+        const updatedRegistro = {
+            ...registro,
+            ...updateRegistroDto,
+            palabra: palabra,
+            idioma: idioma,
+        };
+        await this.registroRepository.save(updatedRegistro);
+        return this.toResponseDto(updatedRegistro);
     }
     async remove(id) {
-        const deleted = await this.RegistroRepository.findOneBy({ id });
-        if (deleted) {
-            throw new Error(`Respuesta #${id} not found`);
+        const registro = await this.registroRepository.findOneBy({ id: id });
+        if (!registro) {
+            throw new common_1.NotFoundException('Registro no encontrado');
         }
-        await this.RegistroRepository.delete(id);
-        return deleted;
+        await this.registroRepository.update(id, { estado: 'eliminado' });
+        const updatedRegistro = await this.registroRepository.findOne({
+            where: { id: id },
+            relations: ['palabra', 'idioma'],
+        });
+        return this.toResponseDto(updatedRegistro);
+    }
+    toResponseDto(registro) {
+        return {
+            id: registro.id,
+            deletreo: registro.deletreo,
+            silabas: registro.silabas,
+            fonetica: registro.fonetica,
+            estado: registro.estado,
+            idioma: registro.idioma,
+            palabra: registro.palabra,
+        };
     }
 };
 exports.RegistroService = RegistroService;
 exports.RegistroService = RegistroService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(registro_entity_1.Registro)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(palabra_entity_1.Palabra)),
+    __param(2, (0, typeorm_1.InjectRepository)(idioma_entity_1.Idioma)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], RegistroService);
 //# sourceMappingURL=registro.service.js.map

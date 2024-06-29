@@ -1,8 +1,8 @@
 export declare class CreatePalabraInput {
-    palabra: string;
+    palabraId: number;
+    id: number;
     deletreo: string;
     silabas: number;
     fonetica: string;
     estado: string;
-    idiomaId: number;
 }

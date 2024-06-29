@@ -31,8 +31,8 @@ let IdiomaResolver = class IdiomaResolver {
     findOne(id) {
         return this.idiomaService.findOne(id);
     }
-    updateIdioma(id, updateIdiomaInput) {
-        return this.idiomaService.update(id, updateIdiomaInput);
+    updateIdioma(updateIdiomaInput) {
+        return this.idiomaService.update(updateIdiomaInput.id, updateIdiomaInput);
     }
     removeIdioma(id) {
         return this.idiomaService.remove(id);
@@ -62,10 +62,9 @@ __decorate([
 ], IdiomaResolver.prototype, "findOne", null);
 __decorate([
     (0, graphql_1.Mutation)(() => idioma_entity_1.Idioma),
-    __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
-    __param(1, (0, graphql_1.Args)('updateIdiomaInput')),
+    __param(0, (0, graphql_1.Args)('updateIdiomaInput')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_idioma_input_1.UpdateIdiomaInput]),
+    __metadata("design:paramtypes", [update_idioma_input_1.UpdateIdiomaInput]),
     __metadata("design:returntype", void 0)
 ], IdiomaResolver.prototype, "updateIdioma", null);
 __decorate([

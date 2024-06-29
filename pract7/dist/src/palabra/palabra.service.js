@@ -30,21 +30,15 @@ let PalabraService = class PalabraService {
         return this.PalabraRepository.find({ where: wherecondition });
     }
     async findOne(id) {
-        const item = await this.PalabraRepository.findOneBy({ id });
-        if (!item)
-            throw new common_1.NotFoundException('Item not found');
-        return item;
+        return this.PalabraRepository.findOneBy({ id: id });
     }
-    async update(id, updatePalabraInput) {
-        const item = await this.PalabraRepository.preload(updatePalabraInput);
-        if (!item)
-            throw new common_1.NotFoundException(`Item with id: ${id} not found`);
-        return this.PalabraRepository.save(item);
+    async update(id, updatePalabra) {
+        await this.PalabraRepository.update(id, updatePalabra);
+        return this.PalabraRepository.findOneBy({ id: id });
     }
     async remove(id) {
-        const palabra = await this.findOne(id);
-        await this.PalabraRepository.remove(palabra);
-        return { ...palabra, id };
+        await this.PalabraRepository.update(id, { estado: 'eliminado' });
+        return this.PalabraRepository.findOneBy({ id: id });
     }
 };
 exports.PalabraService = PalabraService;

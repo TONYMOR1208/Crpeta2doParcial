@@ -9,6 +9,6 @@ import { Idioma } from 'src/idioma/entities/idioma.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Registro, Palabra, Idioma])],
   providers: [RegistroService, RegistroResolver], 
-  exports: [TypeOrmModule, RegistroService],
+  exports: [TypeOrmModule],
 })
 export class RegistroModule {}

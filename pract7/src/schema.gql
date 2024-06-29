@@ -13,8 +13,6 @@ type Palabra {
 
 type Registro {
   id: Int!
-  idiomaId: Int!
-  palabraId: Int!
   deletreo: String!
   silabas: Int!
   fonetica: String!
@@ -22,7 +20,7 @@ type Registro {
 }
 
 type Idioma {
-  id: Int!
+  id: ID!
   nombre: String!
   descripcion: String!
   estado: String!
@@ -39,7 +37,7 @@ type Query {
 
 type Mutation {
   createIdioma(createIdiomaInput: CreateIdiomaInput!): Idioma!
-  updateIdioma(id: Int!, updateIdiomaInput: UpdateIdiomaInput!): Idioma!
+  updateIdioma(updateIdiomaInput: UpdateIdiomaInput!): Idioma!
   removeIdioma(id: Int!): Idioma!
   createPalabra(createPalabraInput: CreatePalabraInput!): Palabra!
   updatePalabra(updatePalabraInput: UpdatePalabraInput!): Palabra!
@@ -50,48 +48,49 @@ type Mutation {
 }
 
 input CreateIdiomaInput {
-  nombre: String
+  nombre: String!
+  id: Int!
   descripcion: String!
   estado: String!
 }
 
 input UpdateIdiomaInput {
   nombre: String
+  id: Int!
   descripcion: String
   estado: String
 }
 
 input CreatePalabraInput {
-  palabra: String
+  palabraId: Int!
+  id: Int!
   deletreo: String!
   silabas: Float!
   fonetica: String!
   estado: String!
-  idiomaId: Float!
 }
 
 input UpdatePalabraInput {
-  palabra: String
+  palabraId: Int
+  id: Int!
   deletreo: String
   silabas: Float
   fonetica: String
   estado: String
-  idiomaId: Float
-  id: Int!
 }
 
 input CreateRegistroInput {
-  idiomaId: Float!
-  palabraId: Float!
+  idiomaid: Int!
+  palabraid: Int!
   deletreo: String!
   silabas: Float!
   fonetica: String!
-  estado: String
+  estado: String!
 }
 
 input UpdateRegistroInput {
-  idiomaId: Float
-  palabraId: Float
+  idiomaid: Int
+  palabraid: Int
   deletreo: String
   silabas: Float
   fonetica: String

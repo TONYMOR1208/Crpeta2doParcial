@@ -10,22 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateIdiomaInput = void 0;
+const create_idioma_input_1 = require("./create-idioma.input");
 const graphql_1 = require("@nestjs/graphql");
-let UpdateIdiomaInput = class UpdateIdiomaInput {
+let UpdateIdiomaInput = class UpdateIdiomaInput extends (0, graphql_1.PartialType)(create_idioma_input_1.CreateIdiomaInput) {
 };
 exports.UpdateIdiomaInput = UpdateIdiomaInput;
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
-], UpdateIdiomaInput.prototype, "nombre", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
-], UpdateIdiomaInput.prototype, "descripcion", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
-], UpdateIdiomaInput.prototype, "estado", void 0);
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    __metadata("design:type", Number)
+], UpdateIdiomaInput.prototype, "id", void 0);
 exports.UpdateIdiomaInput = UpdateIdiomaInput = __decorate([
     (0, graphql_1.InputType)()
 ], UpdateIdiomaInput);

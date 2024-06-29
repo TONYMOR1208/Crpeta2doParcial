@@ -21,7 +21,7 @@ exports.RegistroModule = RegistroModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([registro_entity_1.Registro, palabra_entity_1.Palabra, idioma_entity_1.Idioma])],
         providers: [registro_service_1.RegistroService, registro_resolver_1.RegistroResolver],
-        exports: [typeorm_1.TypeOrmModule, registro_service_1.RegistroService],
+        exports: [typeorm_1.TypeOrmModule],
     })
 ], RegistroModule);
 //# sourceMappingURL=registro.module.js.map

@@ -24,26 +24,16 @@ export class IdiomaService {
 
 
   async findOne(id: number): Promise<Idioma> {
-    const item = await this.IdiomaRepository.findOneBy({id});
-    if (!item) throw new NotFoundException('Item not found');
-    return item;
+    return this.IdiomaRepository.findOneBy({ id: id });
   }
 
-  
-  
-  async update(id: number, updateIdiomaInput: UpdateIdiomaInput): Promise<  Idioma> {
-    
-    const item = await this.IdiomaRepository.preload(updateIdiomaInput);
-
-    if ( !item ) throw new NotFoundException(`Item with id: ${ id } not found`);
-
-    return this.IdiomaRepository.save( item );
-
+  async update(id: number, updateIdiomaDto: UpdateIdiomaInput): Promise<Idioma> {
+    await this.IdiomaRepository.update(id, updateIdiomaDto);
+    return this.IdiomaRepository.findOneBy({ id: id });
   }
 
-  async remove( id: number ):Promise<Idioma> {
-    const idioma = await this.findOne( id );
-    await this.IdiomaRepository.remove( idioma );
-    return { ...idioma, id };
+  async remove(id: number): Promise<Idioma> {
+    await this.IdiomaRepository.update(id, { estado: 'eliminado' });
+    return this.IdiomaRepository.findOneBy({ id: id });
   }
 }

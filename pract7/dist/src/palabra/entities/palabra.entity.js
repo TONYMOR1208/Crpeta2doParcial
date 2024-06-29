@@ -42,14 +42,10 @@ __decorate([
     __metadata("design:type", String)
 ], Palabra.prototype, "fonetica", void 0);
 __decorate([
+    (0, typeorm_1.Column)('text'),
     (0, graphql_1.Field)(() => String),
-    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Palabra.prototype, "estado", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Palabra.prototype, "idiomaId", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => registro_entity_1.Registro, registro => registro.palabra, { cascade: true }),
     __metadata("design:type", Array)

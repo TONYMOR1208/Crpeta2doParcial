@@ -18,34 +18,27 @@ const idioma_entity_1 = require("./entities/idioma.entity");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 let IdiomaService = class IdiomaService {
-    constructor(idiomaRepository) {
-        this.idiomaRepository = idiomaRepository;
+    constructor(IdiomaRepository) {
+        this.IdiomaRepository = IdiomaRepository;
     }
     async create(createIdiomaInput) {
-        const newIdioma = this.idiomaRepository.create(createIdiomaInput);
-        return await this.idiomaRepository.save(newIdioma);
+        const newIdioma = this.IdiomaRepository.create(createIdiomaInput);
+        return await this.IdiomaRepository.save(newIdioma);
     }
     async findAll(estado) {
-        const whereCondition = estado === 'todos' ? {} : { estado };
-        return this.idiomaRepository.find({ where: whereCondition });
+        const wherecondition = estado === 'todos' ? {} : { estado };
+        return this.IdiomaRepository.find({ where: wherecondition });
     }
     async findOne(id) {
-        const item = await this.idiomaRepository.findOneBy({ id });
-        if (!item)
-            throw new common_1.NotFoundException('Item not found');
-        return item;
+        return this.IdiomaRepository.findOneBy({ id: id });
     }
-    async update(id, updateIdiomaInput) {
-        const item = await this.idiomaRepository.findOneBy({ id });
-        if (!item)
-            throw new common_1.NotFoundException(`Item with id: ${id} not found`);
-        Object.assign(item, updateIdiomaInput);
-        return this.idiomaRepository.save(item);
+    async update(id, updateIdiomaDto) {
+        await this.IdiomaRepository.update(id, updateIdiomaDto);
+        return this.IdiomaRepository.findOneBy({ id: id });
     }
     async remove(id) {
-        const idioma = await this.findOne(id);
-        await this.idiomaRepository.remove(idioma);
-        return { ...idioma, id };
+        await this.IdiomaRepository.update(id, { estado: 'eliminado' });
+        return this.IdiomaRepository.findOneBy({ id: id });
     }
 };
 exports.IdiomaService = IdiomaService;

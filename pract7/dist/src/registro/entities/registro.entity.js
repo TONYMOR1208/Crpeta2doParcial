@@ -23,16 +23,6 @@ __decorate([
     __metadata("design:type", Number)
 ], Registro.prototype, "id", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Registro.prototype, "idiomaId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => graphql_1.Int),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Registro.prototype, "palabraId", void 0);
-__decorate([
     (0, graphql_1.Field)(() => String),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
@@ -48,8 +38,8 @@ __decorate([
     __metadata("design:type", String)
 ], Registro.prototype, "fonetica", void 0);
 __decorate([
+    (0, typeorm_1.Column)('text'),
     (0, graphql_1.Field)(() => String),
-    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Registro.prototype, "estado", void 0);
 __decorate([

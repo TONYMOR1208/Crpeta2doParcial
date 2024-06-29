@@ -6,6 +6,5 @@ export declare class Palabra {
     silabas: number;
     fonetica: string;
     estado: string;
-    idiomaId: number;
     registro: Registro[];
 }

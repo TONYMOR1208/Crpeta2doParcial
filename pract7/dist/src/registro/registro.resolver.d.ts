@@ -5,9 +5,9 @@ import { UpdateRegistroInput } from './dto/update-registro.input';
 export declare class RegistroResolver {
     private readonly registroService;
     constructor(registroService: RegistroService);
-    createRegistro(createRegistroInput: CreateRegistroInput): Promise<Registro>;
+    createRegistro(createRegistroInput: CreateRegistroInput): Promise<any>;
     findAll(estado: string): Promise<Registro[]>;
-    findOne(id: number): Promise<Registro>;
-    updateRegistro(updateRegistroInput: UpdateRegistroInput): Promise<Registro>;
-    removeRegistro(id: number): Promise<Registro>;
+    findOne(id: number): Promise<any>;
+    updateRegistro(updateRegistroInput: UpdateRegistroInput): Promise<any>;
+    removeRegistro(id: number): Promise<any>;
 }

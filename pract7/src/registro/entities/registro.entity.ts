@@ -10,14 +10,6 @@ export class Registro {
   @Field(() => Int)
   id: number;
 
-  @Field(() => Int)
-  @Column()
-  idiomaId: number;
-
-  @Field(() => Int)
-  @Column()
-  palabraId: number;
-
   @Field(() => String)
   @Column()
   deletreo: string;
@@ -30,18 +22,15 @@ export class Registro {
   @Column()
   fonetica: string;
 
-  @Field(() => String)
-  @Column()
-  estado: string;
+  @Column('text')
+    @Field(() => String)
+        estado: string;
 
   @ManyToOne(
     () => Idioma, 
     palabra => palabra.registro,
     {eager: true})
     idioma: Idioma;
-
-
-
 
   @ManyToOne(
     () => Palabra, 

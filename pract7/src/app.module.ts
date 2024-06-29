@@ -28,9 +28,9 @@ import { join } from 'path';
       password: '123456',
       database: 'pruebapract7',
       autoLoadEntities: true,
-      synchronize: false, // Desactivar synchronize para usar migraciones
+      synchronize: false, 
       migrations: [join(__dirname, 'migration/**/*.ts')],
-      entities: [join(__dirname, '**/*.entity{.ts,.js}')], // Ajustar el path para encontrar entidades
+      entities: [join(__dirname, '**/*.entity{.ts,.js}')], 
     }),
     IdiomaModule, 
     PalabraModule, 

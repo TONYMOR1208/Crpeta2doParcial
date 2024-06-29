@@ -16,11 +16,17 @@ let CreatePalabraInput = class CreatePalabraInput {
 };
 exports.CreatePalabraInput = CreatePalabraInput;
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true }),
+    (0, graphql_1.Field)(() => graphql_1.Int),
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreatePalabraInput.prototype, "palabra", void 0);
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CreatePalabraInput.prototype, "palabraId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    __metadata("design:type", Number)
+], CreatePalabraInput.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
     (0, class_validator_1.IsNotEmpty)(),
@@ -31,11 +37,11 @@ __decorate([
     (0, graphql_1.Field)(() => Number),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
 ], CreatePalabraInput.prototype, "silabas", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
+    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreatePalabraInput.prototype, "fonetica", void 0);
@@ -46,12 +52,6 @@ __decorate([
     (0, class_validator_1.MaxLength)(20),
     __metadata("design:type", String)
 ], CreatePalabraInput.prototype, "estado", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => Number),
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
-], CreatePalabraInput.prototype, "idiomaId", void 0);
 exports.CreatePalabraInput = CreatePalabraInput = __decorate([
     (0, graphql_1.InputType)()
 ], CreatePalabraInput);

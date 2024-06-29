@@ -16,17 +16,20 @@ let CreateRegistroInput = class CreateRegistroInput {
 };
 exports.CreateRegistroInput = CreateRegistroInput;
 __decorate([
-    (0, graphql_1.Field)(() => Number),
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], CreateRegistroInput.prototype, "idiomaId", void 0);
+], CreateRegistroInput.prototype, "idiomaid", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => Number),
+    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Number)
-], CreateRegistroInput.prototype, "palabraId", void 0);
+], CreateRegistroInput.prototype, "palabraid", void 0);
 __decorate([
     (0, graphql_1.Field)(() => String),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateRegistroInput.prototype, "deletreo", void 0);
@@ -39,12 +42,13 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(() => String),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateRegistroInput.prototype, "fonetica", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => String, { nullable: true }),
-    (0, class_validator_1.IsOptional)(),
+    (0, graphql_1.Field)(() => String),
     (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateRegistroInput.prototype, "estado", void 0);
 exports.CreateRegistroInput = CreateRegistroInput = __decorate([

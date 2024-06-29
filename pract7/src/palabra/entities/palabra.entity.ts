@@ -1,6 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
-import { Idioma } from 'src/idioma/entities/idioma.entity';
 import { Registro } from 'src/registro/entities/registro.entity';
 
 @ObjectType()
@@ -26,13 +25,9 @@ export class Palabra {
   @Column()
   fonetica: string;
 
+  @Column('text')
   @Field(() => String)
-  @Column()
   estado: string;
-
-  
-  @Column()
-  idiomaId: number;
 
   @OneToMany(
     () => Registro, 

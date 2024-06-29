@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Registro } from 'src/registro/entities/registro.entity';
 
@@ -6,7 +6,7 @@ import { Registro } from 'src/registro/entities/registro.entity';
 @Entity({ name: 'idioma' })
 export class Idioma {
   @PrimaryGeneratedColumn()
-  @Field(() => Int)
+  @Field(() => ID)
   id: number;
 
   @Field(() => String)

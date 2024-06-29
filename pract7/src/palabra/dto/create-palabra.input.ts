@@ -3,10 +3,18 @@ import { IsNotEmpty, IsNumber, IsString, MaxLength, Min } from 'class-validator'
 
 @InputType()
 export class CreatePalabraInput {
-  @Field(() => String, {nullable: true})
+  @Field(() => Int)
   @IsNotEmpty()
-  @IsString()
-  palabra: string;
+  @IsNumber()
+  palabraId: number; 
+
+
+  
+ @IsNumber()
+ @IsNotEmpty()
+   @Field(() => Int)
+   id: number;
+ 
 
   @Field(() => String)
   @IsNotEmpty()
@@ -16,10 +24,10 @@ export class CreatePalabraInput {
   @Field(() => Number)
   @IsNotEmpty()
   @IsNumber()
-  @Min(1)
   silabas: number;
 
   @Field(() => String)
+  @IsNotEmpty()
   @IsString()
   fonetica: string;
 
@@ -29,9 +37,5 @@ export class CreatePalabraInput {
   @MaxLength(20)
   estado: string;
 
-  @Field(() => Number)
-  @IsNotEmpty()
-  @IsNumber()
-  idiomaId: number;
- 
+
 }

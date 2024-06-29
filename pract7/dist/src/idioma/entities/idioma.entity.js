@@ -18,7 +18,7 @@ let Idioma = class Idioma {
 exports.Idioma = Idioma;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
-    (0, graphql_1.Field)(() => graphql_1.Int),
+    (0, graphql_1.Field)(() => graphql_1.ID),
     __metadata("design:type", Number)
 ], Idioma.prototype, "id", void 0);
 __decorate([

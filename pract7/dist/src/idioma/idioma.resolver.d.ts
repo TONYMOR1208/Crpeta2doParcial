@@ -8,6 +8,6 @@ export declare class IdiomaResolver {
     createIdioma(createIdiomaInput: CreateIdiomaInput): Promise<Idioma>;
     findAll(estado: string): Promise<Idioma[]>;
     findOne(id: number): Promise<Idioma>;
-    updateIdioma(id: number, updateIdiomaInput: UpdateIdiomaInput): Promise<Idioma>;
+    updateIdioma(updateIdiomaInput: UpdateIdiomaInput): Promise<Idioma>;
     removeIdioma(id: number): Promise<Idioma>;
 }

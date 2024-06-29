@@ -1,18 +1,21 @@
-import { InputType, Field } from '@nestjs/graphql';
-import { IsNotEmpty, IsNumber, IsString, IsOptional } from 'class-validator';
+import { InputType, Field, Int } from '@nestjs/graphql';
+import { IsNotEmpty, IsNumber, IsString} from 'class-validator';
 
 @InputType()
 export class CreateRegistroInput {
 
-  @Field(() => Number) 
+  @Field(() => Int)
+  @IsNumber()
   @IsNotEmpty()
-  idiomaId: number;
+  idiomaid: number;
 
-  @Field(() => Number) 
+  @Field(() => Int)
+  @IsNumber()
   @IsNotEmpty()
-  palabraId: number;
+  palabraid: number;
 
   @Field(() => String)
+  @IsString()
   @IsNotEmpty()
   deletreo: string;
 
@@ -23,12 +26,14 @@ export class CreateRegistroInput {
 
   @Field(() => String)
   @IsString()
+  @IsNotEmpty()
   fonetica: string;
 
-  @Field(() => String, {nullable: true})
-  @IsOptional() 
+  @Field(() => String)
   @IsString()
+  @IsNotEmpty()
   estado: string;
+ 
 }
 
 

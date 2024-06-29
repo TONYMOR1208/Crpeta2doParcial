@@ -8,6 +8,6 @@ export declare class PalabraService {
     create(createPalabraInput: CreatePalabraInput): Promise<Palabra>;
     findAll(estado: string): Promise<Palabra[]>;
     findOne(id: number): Promise<Palabra>;
-    update(id: number, updatePalabraInput: UpdatePalabraInput): Promise<Palabra>;
+    update(id: number, updatePalabra: UpdatePalabraInput): Promise<Palabra>;
     remove(id: number): Promise<Palabra>;
 }
