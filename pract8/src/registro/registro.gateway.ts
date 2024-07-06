@@ -1,7 +1,7 @@
 import { WebSocketGateway, SubscribeMessage, MessageBody, OnGatewayConnection, OnGatewayDisconnect, WebSocketServer } from '@nestjs/websockets';
 import { RegistroService } from './registro.service';
 import { CreateRegistroDto } from './dto/create-registro.dto';
-import { UpdateRegistroDto } from './dto/update-registro.dto';
+
 import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway({cors: true})
@@ -15,7 +15,7 @@ export class RegistroGateway implements OnGatewayConnection, OnGatewayDisconnect
   async handleConnection(client: Socket, ...args: any[]) {
     const token = client.handshake.headers.authentication as string;
     try {
-      // validar el token
+
       await this.registroService.registerClient(client, token);
     } catch (error) {
       client.disconnect();  
@@ -41,7 +41,7 @@ export class RegistroGateway implements OnGatewayConnection, OnGatewayDisconnect
   create(@MessageBody() createRegistroDto: CreateRegistroDto) {
     
     const inserted = this.registroService.create(createRegistroDto);
-    this.wss.emit('newRegistro', this.findAll() );
+    this.wss.emit('NUEVOREGISTRO', this.findAll() );
     return inserted;
   }
 
